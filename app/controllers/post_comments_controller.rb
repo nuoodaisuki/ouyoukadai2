@@ -6,6 +6,11 @@ class PostCommentsController < ApplicationController
     comment.save
     redirect_back(fallback_location: root_path)
   end
+  
+  def destroy
+    PostComment.find(params[:id]).destroy
+    redirect_back(fallback_location: root_path)
+  end
 
   private
 

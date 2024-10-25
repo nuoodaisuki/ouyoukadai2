@@ -28,8 +28,11 @@
             <%= link_to book_favorite_path(@book), method: :post do %>
               ♡<%= @book.favorites.count %>
             <% end %>
-          </td>
           <% end %>
+          </td>
+          <td>
+            <%= "コメント数: #{@book.post_comments.count}" %>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
@@ -41,6 +44,11 @@
               <%= image_tag post_comment.user.get_profile_image, size:"100x100" %>
             </td>
             <td><%= post_comment.comment %></td>
+            <td>
+              <% if post_comment.user == current_user %>
+                <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), class: "btn btn-secondary", method: :delete %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>
