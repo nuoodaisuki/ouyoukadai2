@@ -1,0 +1,2 @@
+module RelationShipsHelper
+end
