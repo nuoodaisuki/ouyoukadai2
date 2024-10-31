@@ -20,9 +20,9 @@
     <td>
       <% if current_user.id != user.id %>
         <% if user.is_followed_by?(current_user) %>
-          <%= link_to "フォロー外す", user_relationships_path(user), method: :delete, class: "btn btn-secondary btn-danger" %>
+          <%= link_to "フォロー外す", user_relation_ships_path(user), method: :delete, class: "btn btn-secondary btn-danger" %>
         <% else %>
-          <%= link_to "フォローする", user_relationships_path(user), method: :post, class: "btn btn-secondary btn-success" %>
+          <%= link_to "フォローする", user_relation_ships_path(user), method: :post, class: "btn btn-secondary btn-success" %>
         <% end %>
       <% end %>
     </td>
