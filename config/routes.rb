@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers
     end
-    resource :relationships, only: [:create,:destroy]
+    resource :relation_ships, only: [:create,:destroy]
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
