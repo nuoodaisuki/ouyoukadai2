@@ -10,6 +10,7 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
+import "replace_btn.js.erb"
 
 import "../stylesheets/application" 
 
