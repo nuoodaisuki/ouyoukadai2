@@ -1,15 +1,15 @@
 <table class="table">
-  <tr>
     <% book.post_comments.each do |post_comment| %>
-      <td>
-        <%= image_tag post_comment.user.get_profile_image, size:"100x100" %>
-      </td>
-      <td><%= post_comment.comment %></td>
-      <td>
-        <% if post_comment.user == current_user %>
-          <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), class: "btn btn-secondary", method: :delete, remote: true %>
-        <% end %>
-      </td>
+      <tr>
+        <td>
+          <%= image_tag post_comment.user.get_profile_image, size:"100x100" %>
+        </td>
+        <td><%= post_comment.comment %></td>
+        <td>
+          <% if post_comment.user == current_user %>
+            <%= link_to "Destroy", book_post_comment_path(post_comment.book, post_comment), class: "btn btn-secondary", method: :delete, remote: true %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-  </tr>
 </table>
