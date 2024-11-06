@@ -11,6 +11,8 @@ import "jquery"
 import "popper.js"
 import "bootstrap"
 import "replace_btn.js.erb"
+import "create.js.erb"
+import "destroy.js.erb"
 
 import "../stylesheets/application" 
 
