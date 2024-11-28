@@ -1,0 +1,26 @@
+<% @entries.each do |e| %>
+  <% if @my_account != e.user.id %>
+    <h1><%= e.user.name %>さんとのメッセージ</strong></h1>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="col">
+    <%= form_for @message do |f| %>
+      <%= f.text_field :message %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+    <% end %>
+  </div>
+  <div class="col">
+    <table class="table">
+      <% if @messages.present? %>
+        <% @messages.each do |m| %>
+          <tr>
+            <td><%= m.message %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <div class="col"></div>
+<

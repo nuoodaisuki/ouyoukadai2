@@ -9,9 +9,11 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :relation_ships, foreign_key: "follower_id", dependent: :destroy
   has_many :followings, through: :relation_ships, source: :followed
-
   has_many :reverse_of_relationships, class_name: "RelationShip", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :group_users, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true

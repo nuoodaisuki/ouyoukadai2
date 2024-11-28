@@ -1,4 +1,13 @@
-<% if @user.errors.any? %>
+<% if @user.present? && @user.errors.any? %>
+  <div id="error_explanation">
+    <h3><%= pluralize(obj.errors.count, "error") %> prohibited this obj from being saved:</h3>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% elsif @group.present? && @group.errors.any? %>
   <div id="error_explanation">
     <h3><%= pluralize(obj.errors.count, "error") %> prohibited this obj from being saved:</h3>
     <ul>
