@@ -39,6 +39,29 @@ class GroupsController < ApplicationController
     end
   end
 
+  def new_group_email
+    @group = Group.find(params[:id])
+  end
+
+  def send_group_email
+    @group = Group.find(params[:id])
+    @owner = current_user
+    @title = params[:title]
+    @content = params[:content]
+
+    # メール送信
+    GroupMailer.group_notification(@group, @owner, @title, @content).deliver_now
+
+    # 送信完了画面に遷移
+    redirect_to email_sent_group_path(@group, title: @title, content: @content)
+  end
+
+  def email_sent
+    @group = Group.find(params[:id])
+    @title = params[:title]
+    @content = params[:content]
+  end
+
   private
 
   def group_params

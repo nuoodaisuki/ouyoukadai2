@@ -1,0 +1,5 @@
+<h1><%= @group.name %>グループからのお知らせ</h1>
+<p>送信者: <%= @owner.name %></p>
+<h2><%= @title %></h2>
+<p><%= @content %></p>
+<p>グループの詳細ページはこちら: <%= link_to 'グループページ', group_url(@group) %></p>
