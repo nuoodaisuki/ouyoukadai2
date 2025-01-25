@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:create, :destroy]
   end
   resources :users, only: [:index,:show,:edit,:update] do
+    get "search" => "users#search"
     member do
       get :followings, :followers
     end
