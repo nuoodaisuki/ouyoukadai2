@@ -11,118 +11,21 @@
       <%= render 'books/index',books: @books %>
 
       <h3>投稿数の前日比・前週比</h3>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>今日の投稿</th>
-            <th>昨日の投稿</th>
-            <th>前日比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @today_book.count %></td>
-            <td><%= @yesterday_book.count %></td>
-            <% if @yesterday_book.count == 0 %>
-              <td>前日の投稿はなし</td>
-            <% else %>
-              <td><% the_day_before =   @today_book.count / @yesterday_book.count.to_f %>
-              <%= (the_day_before * 100).round %>%</td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
-        
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>今週の投稿</th>
-            <th>先週の投稿</th>
-            <th>先週比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @this_week_book.count %></td>
-            <td><%= @last_week_book.count %></td>
-            <% if @last_week_book.count == 0 %>
-              <td>先週の投稿はなし</td>
-            <% else %>
-              <td><% the_week_before = @this_week_book.count / @last_week_book.count.to_f %>
-              <%= (the_week_before * 100).round %>%</td>
-            <% end %>
-          </tr>
-        </tbody>
-      </table>
+      <%= render 'books/statistics_table',
+      today_book: @today_book,
+      yesterday_book: @yesterday_book,
+      this_week_book: @this_week_book,
+      last_week_book: @last_week_book %>
 
       <h3>７日間分の投稿数</h3>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>６日前</th>
-            <th>５日前</th>
-            <th>４日前</th>
-            <th>３日前</th>
-            <th>２日前</th>
-            <th>１日前</th>
-            <th>今日</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= @six_days_ago_book.count %></td>
-            <td><%= @five_days_ago_book.count %></td>
-            <td><%= @four_days_ago_book.count %></td>
-            <td><%= @three_days_ago_book.count %></td>
-            <td><%= @two_days_ago_book.count %></td>
-            <td><%= @yesterday_book.count %></td>
-            <td><%= @today_book.count %></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <canvas id="myLineChart"></canvas>
-      <script>
-        $(document).on('turbolinks:load', function() {
-          var ctx = document.getElementById("myLineChart");
-          var myLineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
-              datasets: [
-                {
-                  label: '投稿した本の数',
-                  data: [
-                    <%= @six_days_ago_book.count %>,
-                    <%= @five_days_ago_book.count %>,
-                    <%= @four_days_ago_book.count %>,
-                    <%= @three_days_ago_book.count %>,
-                    <%= @two_days_ago_book.count %>,
-                    <%= @yesterday_book.count %>,
-                    <%= @today_book.count %>
-                  ],
-                  borderColor: "rgba(0,0,255,1)",
-                  backgroundColor: "rgba(0,0,0,0)",
-                  tension: 0.5
-                }
-              ],
-            },
-            options: {
-              title: {
-                display: true,
-                text: '7日間の投稿数の比較'
-              },
-              responsive: true,
-              scales: {
-                y:{
-                  suggestedMin: 0,
-                  suggestedMax: 10
-                },
-              },
-            }
-          });
-        });
-      </script>
+      <%= render 'books/posts_per_week',
+      six_days_ago_book: @six_days_ago_book,
+      five_days_ago_book: @five_days_ago_book,
+      four_days_ago_book: @four_days_ago_book,
+      three_days_ago_book: @three_days_ago_book,
+      two_days_ago_book: @two_days_ago_book,
+      yesterday_book: @yesterday_book,
+      today_book: @today_book %>
 
       <%= form_with url:user_search_path(@user), method: :get, local: false do |f| %>
         <%= f.date_field :created_at %>
