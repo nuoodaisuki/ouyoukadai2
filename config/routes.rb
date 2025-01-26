@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
   devise_for :users
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
+    collection do
+      get 'search', to: 'books#search', as: :search
+    end
     resource :favorite, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end

@@ -48,9 +48,14 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def search
+    @books = Book.where("tag LIKE ?", "%#{params[:tag]}%")
+  end
+  
+
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag)
   end
 end

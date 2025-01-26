@@ -1,0 +1,7 @@
+<h1>タグ検索結果: <%= params[:tag] %></h1>
+
+<% if @books.present? %>
+  <%= render 'books/index', books: @books %>
+<% else %>
+  <p>該当する投稿はありません。</p>
+<% end %>

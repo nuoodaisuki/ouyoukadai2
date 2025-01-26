@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2024_11_28_075232) do
     t.text "body"
     t.integer "user_id"
     t.string "star"
+    t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
