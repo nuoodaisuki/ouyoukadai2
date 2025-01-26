@@ -8,6 +8,8 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
+      <%= link_to "新しい順", user_path(@user, sort: "new") %> ｜ 
+      <%= link_to "評価の高い順", user_path(@user, sort: "star") %>
       <%= render 'books/index',books: @books %>
 
       <h3>投稿数の前日比・前週比</h3>

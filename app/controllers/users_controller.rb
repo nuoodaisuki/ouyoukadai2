@@ -21,7 +21,11 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    @books = @user.books
+    if params[:sort] == "star"
+      @books = @user.books.order(star: :desc)
+    else
+      @books = @user.books.order(created_at: :desc)
+    end
     @book = Book.new
     @today_book =  @books.created_today
     @yesterday_book = @books.created_yesterday
