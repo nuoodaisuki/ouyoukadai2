@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
     resource :group_users, only: [:create, :destroy]
   end
+  resources :notifications, only: [:update]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

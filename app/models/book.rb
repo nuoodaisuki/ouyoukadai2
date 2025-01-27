@@ -2,6 +2,7 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
   validates :tag,presence:true
@@ -33,4 +34,9 @@ class Book < ApplicationRecord
   scope :created_this_week, -> { where(created_at: 6.day.ago.beginning_of_day..Time.zone.now.end_of_day) } 
   scope :created_last_week, -> { where(created_at: 2.week.ago.beginning_of_day..1.week.ago.end_of_day) } 
   
+  after_create do
+    user.followers.each do |follower|
+      notifications.create(user_id: follower.id)
+    end
+  end  
 end
