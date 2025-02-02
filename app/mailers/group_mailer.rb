@@ -1,5 +1,5 @@
 class GroupMailer < ApplicationMailer
-  default from: ENV['YOUR_EMAIL_ADDRESS'] # 差出人メールアドレスを環境変数から取得
+  default from: ENV["YOUR_EMAIL_ADDRESS"] # 差出人メールアドレスを環境変数から取得
 
   def group_notification(group, owner, title, content)
     @group = group

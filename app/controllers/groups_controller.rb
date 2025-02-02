@@ -63,15 +63,14 @@ class GroupsController < ApplicationController
   end
 
   private
-
-  def group_params
-    params.require(:group).permit(:name, :introduction, :group_image)
-  end
-
-  def ensure_correct_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
+    def group_params
+      params.require(:group).permit(:name, :introduction, :group_image)
     end
-  end
+
+    def ensure_correct_user
+      @group = Group.find(params[:id])
+      unless @group.owner_id == current_user.id
+        redirect_to groups_path
+      end
+    end
 end

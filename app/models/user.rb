@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+    (profile_image.attached?) ? profile_image : "no_image.jpg"
   end
 
   def is_followed_by?(user)
@@ -41,11 +41,11 @@ class User < ApplicationRecord
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
     elsif search == "forward_match"
-      @user = User.where("name LIKE?","#{word}%")
+      @user = User.where("name LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @user = User.where("name LIKE?","%#{word}")
+      @user = User.where("name LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @user = User.where("name LIKE?","%#{word}%")
+      @user = User.where("name LIKE?", "%#{word}%")
     else
       @user = User.all
     end

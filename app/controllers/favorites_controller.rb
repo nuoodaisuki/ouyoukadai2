@@ -4,7 +4,7 @@ class FavoritesController < ApplicationController
     @favorite = current_user.favorites.new(book_id: book.id)
     @favorite.save
     @book = book
-    render 'replace_btn'
+    render "replace_btn"
   end
 
   def destroy
@@ -12,6 +12,6 @@ class FavoritesController < ApplicationController
     @favorite = current_user.favorites.find_by(book_id: book.id)
     @favorite.destroy
     @book = book
-    render 'replace_btn'
+    render "replace_btn"
   end
 end

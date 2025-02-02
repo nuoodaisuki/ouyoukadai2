@@ -6,7 +6,7 @@ class PostCommentsController < ApplicationController
     comment.book_id = book.id
     comment.save
   end
-  
+
   def destroy
     book = Book.find(params[:book_id])
     @book = book
@@ -14,9 +14,7 @@ class PostCommentsController < ApplicationController
   end
 
   private
-
-  def post_comment_params
-    params.require(:post_comment).permit(:comment)
-  end
-
+    def post_comment_params
+      params.require(:post_comment).permit(:comment)
+    end
 end
